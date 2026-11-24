@@ -74,7 +74,7 @@ let boardResizeObserver = null
 const board = ref(null)
 
 const connectionStationCode = computed(() => {
-  return props.stationCode ? `dnv3-gravita-${props.stationCode}` : null
+  return props.stationCode ? `PRO-ECM-${props.stationCode}` : null
 })
 
 const iframeSrc = computed(() => {
@@ -138,7 +138,7 @@ const iframeSrc = computed(() => {
   const params = new URLSearchParams(paramsObj)
 
   return props.stationCode
-    ? `https://info.adif.es/assets/gravita/gravita.html?${params.toString()}`
+    ? `/assets/gravita/gravita.html?${params.toString()}`
     : ''
 })
 

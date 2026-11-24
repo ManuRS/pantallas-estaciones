@@ -91,9 +91,7 @@
 
               <div class="mt-6 bg-light-green p-3 rounded-md border border-dark-green">
                 <p class="text-xs text-dark-blue">
-                  Proyecto no oficial ni afiliado con ADIF con propósito educacional. Esta web solo
-                  permite configurar los parámetros de su sistema de información al viajero. La
-                  marca y datos mostrados son propiedad de ADIF.
+                  Web no oficial. Datos y marca de ADIF.
                 </p>
               </div>
             </div>
@@ -107,24 +105,23 @@
 
       <footer class="mt-12 pb-7 text-center text-slate-500 text-sm">
         <div class="flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2">
-          <MonitorIcon />
-          <div class="flex items-center gap-2">
-            <span>por</span>
-            <a
-              href="https://x.com/mariomnts"
-              target="_blank"
-              class="hover:text-slate-400 transition-colors"
-              rel="noopener noreferrer"
-              >Mario Montes</a
-            >
-          </div>
-          <span class="hidden sm:inline">•</span>
           <div>
             <a
               href="https://github.com/mariomnts/pantallas-estaciones"
               target="_blank"
               class="hover:text-slate-400 transition-colors"
-              >Código en GitHub</a
+              rel="noopener noreferrer"
+              >Código del proyecto original</a
+            >
+          </div>
+          <span class="hidden sm:inline">•</span>
+          <div>
+            <a
+              href="https://github.com/ManuRS/pantallas-estaciones"
+              target="_blank"
+              class="hover:text-slate-400 transition-colors"
+              rel="noopener noreferrer"
+              >Código de esta versión</a
             >
           </div>
         </div>
@@ -136,7 +133,6 @@
 <script setup>
 import { ref, computed, watch } from 'vue'
 import Logo from '../components/icons/Logo.vue'
-import MonitorIcon from '../components/icons/MonitorIcon.vue'
 import ResizableContainer from '../components/ResizableContainer.vue'
 import Gravita from '../components/Gravita.vue'
 import StationFinder from '../components/StationFinder.vue'
