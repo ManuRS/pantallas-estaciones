@@ -3,12 +3,22 @@
     aria-labelledby="share-screen-title"
     class="bg-slate-800 rounded-xl shadow-2xl p-4 border border-slate-700"
   >
-    <h3 id="share-screen-title" class="text-base font-medium text-white mb-3">
-      Compartir pantalla
-    </h3>
+    <div class="flex items-center justify-between mb-3">
+      <h3 id="share-screen-title" class="text-base font-medium text-white">Compartir pantalla</h3>
+      <button
+        @click="short = !short"
+        :aria-pressed="short"
+        class="px-2 py-1.5 rounded-lg text-xs cursor-pointer transition-all"
+        :class="
+          short ? 'bg-dark-green text-dark-blue' : 'bg-slate-700 text-slate-300 hover:bg-slate-600'
+        "
+      >
+        URL corta
+      </button>
+    </div>
     <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
       <input
-        :value="url"
+        :value="shownUrl"
         readonly
         :disabled="props.disabled"
         aria-label="Screen sharing URL"
@@ -48,7 +58,8 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
+import { parseUrlParamsToFormData, convertFormDataToGravitaProps } from '../utils/format'
 import CopyIcon from './icons/CopyIcon.vue'
 import CheckmarkIcon from './icons/CheckmarkIcon.vue'
 import ExternalLinkIcon from './icons/ExternalLinkIcon.vue'
@@ -62,12 +73,30 @@ const props = defineProps({
 })
 
 const copied = ref(false)
+const short = ref(true)
+
+// Quita los parámetros que no cambian la pantalla (los que ya tienen su valor por defecto)
+function shortenUrl(url) {
+  const u = new URL(url)
+  const parse = () =>
+    JSON.stringify(convertFormDataToGravitaProps(parseUrlParamsToFormData(u.searchParams)))
+  const target = parse()
+  for (const key of [...u.searchParams.keys()]) {
+    if (key === 'station') continue
+    const value = u.searchParams.get(key)
+    u.searchParams.delete(key)
+    if (parse() !== target) u.searchParams.set(key, value)
+  }
+  return u.toString()
+}
+
+const shownUrl = computed(() => (short.value && props.url ? shortenUrl(props.url) : props.url))
 
 const copyUrl = async () => {
   if (props.disabled) return
 
   try {
-    await navigator.clipboard.writeText(props.url)
+    await navigator.clipboard.writeText(shownUrl.value)
     window?.gtag?.('event', 'url_copy_click')
     copied.value = true
     setTimeout(() => {
@@ -80,7 +109,7 @@ const copyUrl = async () => {
 
 const openUrl = () => {
   if (props.disabled) return
-  window.open(props.url, '_blank')
+  window.open(shownUrl.value, '_blank')
 
   window?.gtag?.('event', 'url_open_click')
 }

@@ -681,7 +681,7 @@ export function parseUrlParamsToFormData(params: URLSearchParams): FormData {
     showComposition: parseBoolean(params.get('showComposition'), false),
     showObservation: parseBoolean(params.get('showObservation'), false),
     platformArrangement: params.get('platformArrangement') || 'ascending',
-    fontSize: params.get('fontSize') || 0,
+    fontSize: Number.parseInt(params.get('fontSize') || '0', 10) || 0,
     customFilter: parseArray(params.get('customFilter')),
     stopFilter: parseArray(params.get('stopFilter')),
     platformLocationRight: parseArray(params.get('platformLocationRight')),
