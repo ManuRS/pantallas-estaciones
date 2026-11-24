@@ -1,15 +1,8 @@
 export const PopularStations = [
   { title: 'Chamartín', code: '17000' },
-  { title: 'Atocha Cercanías', code: '18000' },
-  { title: 'Puerta de Atocha', code: '60000' },
-  { title: 'Barcelona Sants', code: '71801' },
-  { title: 'Valencia Nord', code: '65000' },
-  { title: 'Valencia Joaquín Sorolla', code: '03216' },
-  // { title: 'Zaragoza Delicias', code: '71000' },
-  // { title: 'Bilbao Abando', code: '13200' },
-  { title: 'Sevilla Santa Justa', code: '51003' },
-  // { title: 'Málaga María Zambrano', code: '54413' },
-  // { title: 'Santiago de Compostela', code: '31400' },
+  { title: 'Nuevos', code: '18002' },
+  { title: 'Sol', code: '18101' },
+  { title: 'Atocha', code: '18000' },
 ]
 
 export const Stations = [
