@@ -60,6 +60,7 @@
 <script setup>
 import { ref, computed } from 'vue'
 import { parseUrlParamsToFormData, convertFormDataToGravitaProps } from '../utils/format'
+import { addRecent } from '../utils/recent'
 import CopyIcon from './icons/CopyIcon.vue'
 import CheckmarkIcon from './icons/CheckmarkIcon.vue'
 import ExternalLinkIcon from './icons/ExternalLinkIcon.vue'
@@ -97,6 +98,7 @@ const copyUrl = async () => {
 
   try {
     await navigator.clipboard.writeText(shownUrl.value)
+    addRecent(shownUrl.value)
     window?.gtag?.('event', 'url_copy_click')
     copied.value = true
     setTimeout(() => {
@@ -109,6 +111,7 @@ const copyUrl = async () => {
 
 const openUrl = () => {
   if (props.disabled) return
+  addRecent(shownUrl.value)
   window.open(shownUrl.value, '_blank')
 
   window?.gtag?.('event', 'url_open_click')

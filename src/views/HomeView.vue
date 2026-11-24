@@ -99,6 +99,8 @@
             <div :class="{ 'opacity-50 pointer-events-none': !selectedStation }">
               <UrlSharing :url="generatedUrl" :disabled="!selectedStation" />
             </div>
+
+            <RecentScreens />
           </aside>
         </div>
       </main>
@@ -139,6 +141,7 @@ import StationFinder from '../components/StationFinder.vue'
 import StationInfo from '../components/StationInfo.vue'
 import StationForm from '../components/StationForm.vue'
 import UrlSharing from '../components/UrlSharing.vue'
+import RecentScreens from '../components/RecentScreens.vue'
 import { convertFormDataToGravitaProps, generateUrl } from '../utils/format'
 import { Stations } from '../constants'
 import { onMounted } from 'vue'
