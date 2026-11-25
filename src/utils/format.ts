@@ -144,7 +144,7 @@ export function convertFormDataToGravitaProps(formData: FormData) {
     }
 
     if (subtitleValue) {
-      props.subtitle = subtitleValue
+      props.subtitle = subtitleValue === 'none' ? '' : subtitleValue
     }
 
     props.showPlatformPreview = formData.showPlatformPreview

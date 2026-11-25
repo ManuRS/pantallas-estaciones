@@ -934,7 +934,7 @@
                 @input="(e) => emitFormChange({ fontSize: parseInt(e.target.value) })"
                 type="range"
                 min="0"
-                max="3"
+                max="4"
                 step="1"
                 class="w-full h-2 bg-slate-700 rounded-lg appearance-none cursor-pointer slider"
               />
@@ -945,6 +945,7 @@
             <span>Pequeño</span>
             <span>Mediano</span>
             <span>Grande</span>
+            <span>Extra</span>
           </div>
         </div>
       </div>

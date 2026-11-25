@@ -51,6 +51,7 @@ export const Companies = [
 
 export const SubtitlesList = [
   { key: 'station-name', value: 'station-name', label: 'Nombre estación' },
+  { key: 'none', value: 'none', label: 'Sin subtítulo' },
   { key: 'av', value: 'AV', label: 'Alta Velocidad' },
   { key: 'cerc', value: 'CERC', label: 'Cercanías' },
   { key: 'cercmd', value: 'CERCMD', label: 'Cercanías · Regional' },

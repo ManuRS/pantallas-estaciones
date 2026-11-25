@@ -226,12 +226,13 @@ function updateRowsFromBoard() {
   let fontSize = 1
   if (props.interfaz !== 'adif-infotren-vista-alphabetical') {
     if (props.fontSize === 'auto') fontSize = height > width ? 2 : 1
-    else fontSize = Math.min(3, Math.max(1, Number.parseInt(String(props.fontSize), 10) || 1))
+    else fontSize = Math.min(4, Math.max(1, Number.parseInt(String(props.fontSize), 10) || 1))
   }
   let rows
   if (fontSize === 1) rows = Math.round(16 / aspectRatio) - 1
   if (fontSize === 2) rows = Math.round(((16 / 9) * 8) / aspectRatio) - 1
   if (fontSize === 3) rows = Math.round(((16 / 9) * 7) / aspectRatio) - 1
+  if (fontSize === 4) rows = Math.round(((16 / 9) * 5) / aspectRatio) - 1
   if (props.showHeader === false) rows++
   if (!Number.isFinite(rows) || rows < 1) return false
   calculatedRows.value = rows
