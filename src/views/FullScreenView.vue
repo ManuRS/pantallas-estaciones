@@ -8,6 +8,7 @@
 import { computed, onMounted, ref } from 'vue'
 import Gravita from '../components/Gravita.vue'
 import { parseUrlParamsToFormData, convertFormDataToGravitaProps } from '../utils/format'
+import { describeScreen } from '../utils/recent'
 
 const formData = ref({
   interfaz: 'departures',
@@ -66,8 +67,32 @@ onMounted(() => {
     window?.gtag?.('event', 'full_screen_view', {
       ...formData.value,
     })
+    addScreenManifest()
   }
 })
+
+// Permite instalar esta pantalla como app: abre directamente esta URL y lleva su nombre
+function addScreenManifest() {
+  try {
+    const { title, detail } = describeScreen(window.location.href)
+    // Barra de estado del color de la cabecera de ADIF (o del fondo si no hay cabecera)
+    const color = formData.value.showHeader === false ? '#102341' : '#bfefd5'
+    const meta = document.createElement('meta')
+    meta.name = 'theme-color'
+    meta.content = color
+    document.head.appendChild(meta)
+    const query = new URLSearchParams({
+      u: window.location.pathname + window.location.search,
+      n: title,
+      d: detail,
+      c: color,
+    })
+    const link = document.createElement('link')
+    link.rel = 'manifest'
+    link.href = `/manifest.webmanifest?${query}`
+    document.head.appendChild(link)
+  } catch {}
+}
 
 // Convert form data to Gravita props
 const gravitaProps = computed(() => {

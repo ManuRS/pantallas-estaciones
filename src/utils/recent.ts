@@ -35,7 +35,7 @@ const screenKey = (url: string) => {
   return JSON.stringify(convertFormDataToGravitaProps(parseUrlParamsToFormData(params)))
 }
 
-const describe = (url: string) => {
+export const describeScreen = (url: string) => {
   const data = parseUrlParamsToFormData(new URL(url).searchParams)
   const defaultTraffic = ['cercanias', 'av', 'largaDistancia', 'regional']
   const allTraffic =
@@ -58,7 +58,7 @@ const describe = (url: string) => {
 export const recentScreens = computed(() =>
   urls.value.flatMap((url) => {
     try {
-      return [describe(url)]
+      return [describeScreen(url)]
     } catch {
       return []
     }
